@@ -1,11 +1,7 @@
 import pyodbc
+import secret
 
-conn = pyodbc.connect('Driver={SQL Server};'
-                      'Server=172.18.224.1,1433;'
-                      'Database=wms;'
-                      'Trusted_Connection=no;'
-                      'Uid=SA;'
-                      'Pwd=BJKg03569041')
+conn = pyodbc.connect(secret.connectionString)
 
 def execSP(sp, parameters):
     cursor = conn.cursor()
