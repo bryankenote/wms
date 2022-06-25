@@ -1,7 +1,11 @@
 import pyodbc
-import secret
+import os
+from dotenv import load_dotenv
 
-conn = pyodbc.connect(secret.connectionString)
+load_dotenv()
+
+print(os.environ.get('connection_string'))
+conn = pyodbc.connect(os.environ.get('connection_string'))
 
 def execSP(sp, parameters):
     cursor = conn.cursor()
