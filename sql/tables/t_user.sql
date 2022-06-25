@@ -34,4 +34,7 @@ GO
 ALTER TABLE [dbo].[t_user] CHECK CONSTRAINT [FK_user_fork]
 GO
 
-
+ALTER TABLE [dbo].[t_user]  WITH CHECK ADD  CONSTRAINT [FK_user_device] FOREIGN KEY([device_id])
+REFERENCES [dbo].[t_location] ([id])
+GO
+ALTER TABLE [dbo].[t_user] CHECK CONSTRAINT [FK_user_device]
