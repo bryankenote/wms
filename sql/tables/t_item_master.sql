@@ -1,7 +1,6 @@
 USE [wms]
 GO
 
-/****** Object:  Table [dbo].[item_master]    Script Date: 6/22/2022 6:34:51 PM ******/
 SET ANSI_NULLS ON
 GO
 
