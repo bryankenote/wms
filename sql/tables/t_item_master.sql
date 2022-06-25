@@ -10,6 +10,7 @@ GO
 
 CREATE TABLE [dbo].[t_item_master](
 	[id] [int] IDENTITY(1,1) NOT NULL,
+	[wh_id] [int] NOT NULL,
 	[name] [nvarchar](50) NOT NULL,
 	[description] [nvarchar](50) NULL,
 	[ppu] [money] NULL,
@@ -20,4 +21,10 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[t_item_master]  WITH CHECK ADD  CONSTRAINT [FK_item_master_wh] FOREIGN KEY([wh_id])
+REFERENCES [dbo].[t_wh] ([id])
+GO
+
+ALTER TABLE [dbo].[t_item_master] CHECK CONSTRAINT [FK_item_master_wh]
+GO
 

@@ -10,6 +10,7 @@ GO
 
 CREATE TABLE [dbo].[t_location](
 	[id] [int] IDENTITY(1,1) NOT NULL,
+	[wh_id] [int] NOT NULL,
 	[code] [nvarchar](10) NOT NULL,
 	[type] [nvarchar](10) NULL,
 PRIMARY KEY CLUSTERED 
@@ -19,4 +20,9 @@ PRIMARY KEY CLUSTERED
 ) ON [PRIMARY]
 GO
 
+ALTER TABLE [dbo].[t_location]  WITH CHECK ADD  CONSTRAINT [FK_location_wh] FOREIGN KEY([wh_id])
+REFERENCES [dbo].[t_wh] ([id])
+GO
 
+ALTER TABLE [dbo].[t_location] CHECK CONSTRAINT [FK_location_wh]
+GO
