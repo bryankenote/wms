@@ -1,6 +1,8 @@
 from utils import dio
 from processes import assignDevice, assignFork
 
+DEVICE_ID = 1
+
 def main():
     userCode = assignDevice()
     fork = assignFork()
