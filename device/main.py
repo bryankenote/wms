@@ -1,8 +1,8 @@
 from utils import dio
-from processes import login, assignFork
+from processes import assignDevice, assignFork
 
 def main():
-    userCode = login()
+    userCode = assignDevice()
     fork = assignFork()
 
     processes = ['pick order', 'replen/putaway', 'exit']

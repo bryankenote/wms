@@ -7,7 +7,7 @@ def login():
 
         userCode = dio.prompt('user code: ')
 
-        error = db.execSP('sp_login', [['paramUserCode', userCode]])
+        error = db.execSP('sp_assign_device', [['paramUserCode', userCode]])
         if error is not None:
             print(error)
 
