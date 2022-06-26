@@ -1,4 +1,4 @@
-from utils import dio
+from utils import dio, db
 from processes import assignDevice, assignFork
 
 WH_ID = 1
@@ -19,7 +19,15 @@ def main():
         elif selectedProcess == 'replen/putaway':
             print('replen/putaway')
         elif selectedProcess == 'exit':
-            exit()
+            break
+    
+    error = db.execSP('sp_unassign_fork', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    if error is not None:
+        print(error)
+
+    error = db.execSP('sp_unassign_device', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    if error is not None:
+        print(error)
 
 if __name__ == "__main__":
    main()
