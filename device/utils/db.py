@@ -4,7 +4,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-print(os.environ.get('connection_string'))
 conn = pyodbc.connect(os.environ.get('connection_string'))
 
 def execSP(sp, parameters):
