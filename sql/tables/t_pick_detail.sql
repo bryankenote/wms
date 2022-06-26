@@ -13,7 +13,9 @@ CREATE TABLE [dbo].[t_pick_detail](
 	[pick_master_id] [int] NOT NULL,
 	[order_detail_id] [int] NOT NULL,
 	[pick_location] [int] NOT NULL,
-	[qty] [int] NOT NULL,
+	[qty_needed] [int] NOT NULL,
+	[qty_picked] [int] NOT NULL,
+	[status] [char](10) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
