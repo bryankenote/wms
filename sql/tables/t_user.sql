@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[t_user](
 	[wh_id] [int] NOT NULL,
 	[code] [nvarchar](10) NOT NULL,
 	[fork_id] [int] NULL,
+	[device_id] [int] NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -34,6 +35,6 @@ ALTER TABLE [dbo].[t_user] CHECK CONSTRAINT [FK_user_fork]
 GO
 
 ALTER TABLE [dbo].[t_user]  WITH CHECK ADD  CONSTRAINT [FK_user_device] FOREIGN KEY([device_id])
-REFERENCES [dbo].[t_location] ([id])
+REFERENCES [dbo].[t_device] ([id])
 GO
 ALTER TABLE [dbo].[t_user] CHECK CONSTRAINT [FK_user_device]
