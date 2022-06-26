@@ -12,6 +12,7 @@ CREATE TABLE [dbo].[t_pick_detail](
 	[wh_id] [int] NOT NULL,
 	[pick_master_id] [int] NOT NULL,
 	[order_detail_id] [int] NOT NULL,
+	[pick_location] [int] NOT NULL,
 	[qty] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -39,4 +40,11 @@ REFERENCES [dbo].[t_pick_master] ([id])
 GO
 
 ALTER TABLE [dbo].[t_pick_detail] CHECK CONSTRAINT [FK_pick_master]
+GO
+
+ALTER TABLE [dbo].[t_pick_detail]  WITH CHECK ADD  CONSTRAINT [FK_pick_location] FOREIGN KEY([pick_location])
+REFERENCES [dbo].[t_location] ([id])
+GO
+
+ALTER TABLE [dbo].[t_pick_detail] CHECK CONSTRAINT [FK_pick_location]
 GO
