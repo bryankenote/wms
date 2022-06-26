@@ -9,6 +9,7 @@ GO
 
 CREATE TABLE [dbo].[t_order_master](
 	[id] [int] IDENTITY(1,1) NOT NULL,
+	[order_number] char(25) NOT NULL,
 	[wh_id] [int] NOT NULL,
 	[customer] [nvarchar](50) NOT NULL,
 PRIMARY KEY CLUSTERED 

@@ -63,11 +63,11 @@ VALUES (1, 'brad')
 GO
 
 DBCC CHECKIDENT (N't_order_master', RESEED, 0);
-INSERT INTO t_order_master (wh_id, customer)
+INSERT INTO t_order_master (wh_id, order_number, customer)
 VALUES
-(1, 'elon musk'),
-(1, 'kanye west'),
-(1, 'john olin')
+(1, 'A100', 'elon musk'),
+(1, 'A200', 'kanye west'),
+(1, 'A300', 'john olin')
 GO
 
 DBCC CHECKIDENT (N't_order_detail', RESEED, 0);
