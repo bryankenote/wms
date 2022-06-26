@@ -6,9 +6,11 @@ def clearConsole():
 		command = 'cls'
 	os.system(command)
 
-def prompt(promptString):
+def prompt(promptString, error):
 	clearConsole()
 	print(promptString + '\n')
+	if error is not None and error is not 0:
+		print(error)
 	return input()
 
 def listPrompt(promptString, options):
