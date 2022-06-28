@@ -11,7 +11,7 @@ def main():
     processes = ['pick order', 'replen/putaway', 'exit']
 
     while True:
-        selectedIndex = int(dio.listPrompt('Select job', processes)) - 1
+        selectedIndex = dio.listPrompt('Select job', processes, 0)
         selectedProcess = processes[selectedIndex]
 
         if selectedProcess == 'pick order':

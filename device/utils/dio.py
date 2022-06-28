@@ -13,7 +13,7 @@ def prompt(promptString, error):
 		print(error)
 	return input()
 
-def listPrompt(promptString, options):
+def listPrompt(promptString, options, error):
 	optionRange = range(1, len(options) + 1)
 	while True:
 		clearConsole()
@@ -21,6 +21,9 @@ def listPrompt(promptString, options):
 		for i in optionRange:
 			print(f'{i}. {options[i-1]}')
 		
+		if error is not None and error is not 0:
+			print(error)
+
 		option = input()
 		if int(option) in optionRange:
-			return option
+			return int(option) - 1
