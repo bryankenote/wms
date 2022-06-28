@@ -21,11 +21,11 @@ def main():
         elif selectedProcess == 'exit':
             break
     
-    error = db.execSP('sp_unassign_fork', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    error = db.execSP('sp_unassign_fork', [['paramWhId', WH_ID], ['paramUserCode', userCode]])[0][0]
     if error is not None:
         print(error)
 
-    error = db.execSP('sp_unassign_device', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    error = db.execSP('sp_unassign_device', [['paramWhId', WH_ID], ['paramUserCode', userCode]])[0][0]
     if error is not None:
         print(error)
 
