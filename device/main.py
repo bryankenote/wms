@@ -1,5 +1,5 @@
 from utils import dio, db
-from processes import assignDevice, assignFork
+from processes import assignDevice, assignFork, pickOrder
 
 WH_ID = 1
 DEVICE_ID = 1
@@ -15,7 +15,7 @@ def main():
         selectedProcess = processes[selectedIndex]
 
         if selectedProcess == 'pick order':
-            print('pick order')
+            pickOrder.pickOrder(WH_ID,DEVICE_ID)
         elif selectedProcess == 'replen/putaway':
             print('replen/putaway')
         elif selectedProcess == 'exit':
