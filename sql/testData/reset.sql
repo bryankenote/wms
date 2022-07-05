@@ -46,15 +46,15 @@ GO
 DBCC CHECKIDENT (N't_stored_item', RESEED, 0);
 INSERT INTO t_stored_item (wh_id, location_id, item_id, qty)
 VALUES
-(1, 1, 1, 50),
-(1, 1, 2, 50),
-(1, 1, 3, 50),
 (1, 2, 1, 50),
 (1, 2, 2, 50),
 (1, 2, 3, 50),
 (1, 3, 1, 50),
 (1, 3, 2, 50),
-(1, 3, 3, 50)
+(1, 3, 3, 50),
+(1, 4, 1, 50),
+(1, 4, 2, 50),
+(1, 4, 3, 50)
 GO
 
 DBCC CHECKIDENT (N't_user', RESEED, 0);
@@ -75,7 +75,28 @@ INSERT INTO t_order_detail (wh_id, order_master_id, item_id, qty)
 VALUES
 (1, 1, 2, 10),
 (1, 3, 1, 1),
-(1, 2, 3, 100),
-(1, 2, 3, 100),
+(1, 2, 1, 100),
+(1, 2, 2, 100),
 (1, 2, 3, 100)
+GO
+
+DBCC CHECKIDENT (N't_pick_master', RESEED, 0);
+INSERT INTO t_pick_master(wh_id, order_master_id)
+VALUES
+(1, 1),
+(1, 2),
+(1, 3)
+GO
+
+DBCC CHECKIDENT (N't_pick_detail', RESEED, 0);
+INSERT INTO t_pick_detail(wh_id, pick_master_id, order_detail_id, pick_location, qty_needed, qty_picked, [status])
+VALUES
+(1, 1, 1, 2, 10, 0, 'U'),
+(1, 3, 2, 2, 1, 0, 'U'),
+(1, 2, 3, 3, 50, 0, 'U'),
+(1, 2, 3, 4, 50, 0, 'U'),
+(1, 2, 4, 3, 50, 0, 'U'),
+(1, 2, 4, 4, 50, 0, 'U'),
+(1, 2, 5, 3, 50, 0, 'U'),
+(1, 2, 5, 4, 50, 0, 'U')
 GO
