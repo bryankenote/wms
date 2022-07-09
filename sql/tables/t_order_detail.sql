@@ -10,7 +10,7 @@ GO
 CREATE TABLE [dbo].[t_order_detail](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[wh_id] [int] NOT NULL,
-	[order_id] [int] NOT NULL,
+	[order_master_id] [int] NOT NULL,
 	[item_id] [int] NOT NULL,
 	[qty] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
@@ -34,7 +34,7 @@ GO
 ALTER TABLE [dbo].[t_order_detail] CHECK CONSTRAINT [FK_item_master]
 GO
 
-ALTER TABLE [dbo].[t_order_detail]  WITH CHECK ADD  CONSTRAINT [FK_order_master] FOREIGN KEY([order_id])
+ALTER TABLE [dbo].[t_order_detail]  WITH CHECK ADD  CONSTRAINT [FK_order_master] FOREIGN KEY([order_master_id])
 REFERENCES [dbo].[t_order_master] ([id])
 GO
 

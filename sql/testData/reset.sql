@@ -71,7 +71,7 @@ VALUES
 GO
 
 DBCC CHECKIDENT (N't_order_detail', RESEED, 0);
-INSERT INTO t_order_detail (wh_id, order_id, item_id, qty)
+INSERT INTO t_order_detail (wh_id, order_master_id, item_id, qty)
 VALUES
 (1, 1, 2, 10),
 (1, 3, 1, 1),
