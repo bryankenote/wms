@@ -13,9 +13,8 @@ def main():
     while True:
         selectedIndex = dio.listPrompt('Select job', processes, 0)
         selectedProcess = processes[selectedIndex]
-
         if selectedProcess == 'pick order':
-            pickOrder.pickOrder(WH_ID,DEVICE_ID)
+            pickOrder.pickOrder(WH_ID, userCode)          
         elif selectedProcess == 'replen/putaway':
             print('replen/putaway')
         elif selectedProcess == 'exit':
