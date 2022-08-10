@@ -1,21 +1,3 @@
-SELECT *
-FROM t_pick_master
-
-SELECT *
-FROM t_pick_detail
-
-SELECT *
-FROM t_order_master
-
-SELECT *
-FROM t_order_detail
-
-SELECT *
-FROM t_item_master
-
-SELECT * 
-FROM t_location
-
 SELECT pkd.id, order_number, name AS item, qty_needed, qty_picked, status, code as pick_location
 FROM t_pick_detail pkd
 LEFT JOIN t_order_detail ord
