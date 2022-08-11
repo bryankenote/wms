@@ -6,7 +6,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-ALTER PROCEDURE [dbo].[sp_update_qty_picked]
+CREATE PROCEDURE [dbo].[sp_update_qty_picked]
 	@paramWhId INT,
 	@paramItmQty INT,
 	@paramPkdId INT

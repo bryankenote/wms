@@ -33,18 +33,15 @@ BEGIN
 		RETURN
 	END
 	
-    -- get order_master_id using order_number
-    SELECT @orderId = id
-    FROM t_order_master orm
-    WHERE orm.order_number = @paramOrder
-	AND wh_id = @paramWhId
-
-	-- find a pick master to assign 
-	SELECT TOP 1 @pickMasterId = id
-	FROM t_pick_master 
-	WHERE order_master_id = @orderId
-    AND wh_id = @paramWhId
-	AND assigned IS NULL
+	-- assign pkm id to pkmid variable
+	SELECT TOP 1 @pickMasterId = pkm.id
+	FROM t_pick_master pkm
+	INNER JOIN t_order_master orm
+		ON orm.id = pkm.order_master_id
+		and orm.wh_id = pkm.wh_id
+	WHERE orm.order_number = @paramOrder
+		AND pkm.wh_id = @paramWhId
+		AND pkm.assigned IS NULL
 
 	-- assign user id under assigned in the pick master
 	UPDATE dbo.[t_pick_master]
