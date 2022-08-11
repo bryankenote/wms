@@ -7,8 +7,10 @@ def pickOrder(whId, userCode):
     while status:        
         pickDetails = pickLocation(whId, userCode)
         if pickDetails != False:
-            pickItem(pickDetails[2])
-            pickItmQty(whId, pickDetails[0]) 
+            item = pickDetails[2]
+            pickItem(item)
+            pickId = pickDetails[0]
+            pickItmQty(whId, pickId) 
         else:
             return
 
@@ -28,8 +30,9 @@ def getOrder(whId, userCode):
     return order
 
 def pickLocation(whId, userCode):
-    row = db.execSP('sp_get_pick', [['paramWhId', whId], ['paramUserCode', userCode]])[0]
-    if row != 0:
+    result = db.execSP('sp_get_pick', [['paramWhId', whId], ['paramUserCode', userCode]])
+    if len(result) > 0:
+        row = result[0]
         pickId = row[0]
         location = row[1].strip()
         item = row[2].strip()
@@ -60,9 +63,8 @@ def pickItem(item):
 
 def pickItmQty(whId, pickId):
     # Choose qty of item 
-    error = 0
-    status = ''
-    while status != 'D':
+    result = ''
+    while result != 'D':
         qtyNeeded = db.execSP('sp_get_pkd_qty_needed', [['paramWhId', whId], ['paramPkdId', pickId]])[0][0]
-        qtyScanned = int(dio.prompt(f'{qtyNeeded} to be picked', error)) 
-        status = db.execSP('sp_update_qty_picked', [['paramWhId', whId], ['paramItmQty', qtyScanned], ['paramPkdId', pickId]])[0][0].strip()
+        qtyScanned = int(dio.prompt(f'{qtyNeeded} to be picked', result)) 
+        result = db.execSP('sp_update_qty_picked', [['paramWhId', whId], ['paramItmQty', qtyScanned], ['paramPkdId', pickId]])[0][0].strip()

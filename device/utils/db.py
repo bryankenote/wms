@@ -18,4 +18,4 @@ def execSP(sp, parameters):
 
     cursor.close()
 
-    return result if len(result) != 0 else [0]
+    return result
