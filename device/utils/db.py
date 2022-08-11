@@ -13,9 +13,9 @@ def execSP(sp, parameters):
     for param in parameters:
         sql += f' @{param[0]}=\'{param[1]}\','
 
-    error = cursor.execute(sql[:-1]).fetchone()[0]
+    result = cursor.execute(sql[:-1]).fetchall()
     cursor.commit()
 
     cursor.close()
 
-    return error
+    return result

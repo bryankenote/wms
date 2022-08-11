@@ -1,5 +1,5 @@
 from utils import dio, db
-from processes import assignDevice, assignFork
+from processes import assignDevice, assignFork, pickOrder
 
 WH_ID = 1
 DEVICE_ID = 1
@@ -11,21 +11,20 @@ def main():
     processes = ['pick order', 'replen/putaway', 'exit']
 
     while True:
-        selectedIndex = int(dio.listPrompt('Select job', processes)) - 1
+        selectedIndex = dio.listPrompt('Select job', processes, 0)
         selectedProcess = processes[selectedIndex]
-
         if selectedProcess == 'pick order':
-            print('pick order')
+            pickOrder.pickOrder(WH_ID, userCode)          
         elif selectedProcess == 'replen/putaway':
             print('replen/putaway')
         elif selectedProcess == 'exit':
             break
     
-    error = db.execSP('sp_unassign_fork', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    error = db.execSP('sp_unassign_fork', [['paramWhId', WH_ID], ['paramUserCode', userCode]])[0][0]
     if error is not None:
         print(error)
 
-    error = db.execSP('sp_unassign_device', [['paramWhId', WH_ID], ['paramUserCode', userCode]])
+    error = db.execSP('sp_unassign_device', [['paramWhId', WH_ID], ['paramUserCode', userCode]])[0][0]
     if error is not None:
         print(error)
 
