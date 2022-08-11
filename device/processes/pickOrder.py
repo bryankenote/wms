@@ -1,10 +1,9 @@
 from utils import dio, db
 
 def pickOrder(whId, userCode):
-    getOrder(whId, userCode)
+    getOrders(whId, userCode)
 
-    status = True
-    while status:        
+    while True:        
         pickDetails = pickLocation(whId, userCode)
         if pickDetails != False:
             item = pickDetails[2]
@@ -14,7 +13,7 @@ def pickOrder(whId, userCode):
         else:
             return
 
-def getOrder(whId, userCode):
+def getOrders(whId, userCode):
     rows = db.execSP('sp_get_orders', [['paramWhId', whId]])
     orders = []
     for row in rows:
